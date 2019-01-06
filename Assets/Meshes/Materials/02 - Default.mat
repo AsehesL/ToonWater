@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: grass
-  m_Shader: {fileID: 4800000, guid: 643a92e21fbc305499f5b8f8d57ee415, type: 3}
+  m_Name: 02 - Default
+  m_Shader: {fileID: 4800000, guid: 2022d3c9a0d2a32438246cd0a5cb5b2a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 519edb63511cf0a41b2e821aae8222f0, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -54,16 +54,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: 41fecd68464d288449ce76dfbc51d23a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Factor: 0.63
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
-    - _Height: 0.3
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -72,12 +74,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _Width: 0.045
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Wind0: {r: 2.29, g: 0.15, b: 1.69, a: 0.81}
-    - _Wind1: {r: 2, g: 0.21, b: 0.02, a: 0.87}
-    - _Wind2: {r: 0.72, g: 0.06, b: 4.71, a: 2.43}
-    - _Wind3: {r: 5.37, g: 0.15, b: 0.45, a: 2.94}
+    - _Color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
