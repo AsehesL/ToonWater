@@ -61,4 +61,5 @@
 			ENDCG
 		}
 	}
+	fallback "Diffuse"
 }
