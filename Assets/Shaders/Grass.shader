@@ -194,6 +194,7 @@
 			fixed4 frag(g2f i) : SV_Target
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
+			col.rgb += i.color.rgb;
 
 				//float3 lightCol = lerp(_LightColor0.rgb, _LightColor0.rgb * _BodyColor.rgb * col.rgb * _Transmittance, ndlS);
 
