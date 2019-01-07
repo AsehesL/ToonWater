@@ -12,7 +12,7 @@ Properties {
 
 Category {
     Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" "PreviewType"="Plane" }
-    Blend SrcAlpha One
+    Blend SrcAlpha OneMinusSrcAlpha
     ColorMask RGB
     Cull Off Lighting Off ZWrite Off
 
@@ -87,7 +87,7 @@ Category {
 
 				fixed4 c = tex2D(_MainTex, i.texcoord + _Speed.xy * _Time.y);
 				fixed mask = tex2D(_Mask, i.texcoordm).r;
-                fixed4 col = 2.0f * i.color * _TintColor * c;
+                fixed4 col = 2.0f * i.color * _TintColor;
                 col.a = saturate(col.a); // alpha should not have double-brightness applied to it, but we can't fix that legacy behaior without breaking everyone's effects, so instead clamp the output to get sensible HDR behavior (case 967476)
 
 				clip(c.r*mask - _Cutout);
