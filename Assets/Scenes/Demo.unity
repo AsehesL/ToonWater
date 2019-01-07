@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641407, b: 0.5748165, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465778, g: 0.4964131, b: 0.5748159, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14353,7 +14353,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
       propertyPath: m_IsActive
@@ -14369,19 +14369,19 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 61ceca14fc2875d4cb2e813f373659d2, type: 2}
     - target: {fileID: 400016, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
       propertyPath: m_RootOrder
@@ -14427,6 +14427,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0630e545c0538834685c93d7e82be90f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4c991ed54bcbc848953567bc5b87af2, type: 3}
   m_IsPrefabAsset: 0
@@ -14458,7 +14462,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 556435924}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1123346161
 MeshRenderer:
