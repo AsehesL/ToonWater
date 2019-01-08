@@ -5,14 +5,17 @@ using RenderTexture = UnityEngine.RenderTexture;
 
 public class FoamRenderCamera : MonoBehaviour
 {
-    public Texture2D tex;
+    public RenderTexture foamTexture
+    {
+        get { return m_FoamTexture; }
+    }
 
     private Camera m_Camera;
 
     private RenderTexture m_InterectTexture;
     private RenderTexture m_FoamTexture;
-    private RenderTexture m_FoamPreTexture;
-	public RenderTexture m_DepthTexture;
+    public RenderTexture m_FoamPreTexture;
+	private RenderTexture m_DepthTexture;
 
     private CommandBuffer m_InteractCommandBuffer;
 	private CommandBuffer m_DepthCommandBuffer;
@@ -114,9 +117,17 @@ public class FoamRenderCamera : MonoBehaviour
 	    m_InteractCommandBuffer.SetRenderTarget(m_InterectTexture);
 	    m_InteractCommandBuffer.ClearRenderTarget(true, true, Color.black);
 
+	    
+
         m_FoamCommandBuffer.Clear();
+
         m_FoamCommandBuffer.SetRenderTarget(m_FoamTexture);
+
+	   
+
         m_FoamCommandBuffer.ClearRenderTarget(true, true, Color.black);
+
+	    
     }
 
 	public void RenderDepth(Renderer renderer)
@@ -152,22 +163,20 @@ public class FoamRenderCamera : MonoBehaviour
 
         m_FoamMaterial.SetTexture("_Interact", m_InterectTexture);
 
-        if(m_IsFoamRenderBegin)
-            m_FoamMaterial.SetTexture("_Pre", m_FoamPreTexture);
+        
 
 
         m_FoamCommandBuffer.DrawRenderer(renderer, m_FoamMaterial);
 
-        if (m_IsFoamRenderBegin)
+        //if (m_IsFoamRenderBegin)
         {
-            m_FoamCommandBuffer.Blit(m_FoamTexture, m_FoamPreTexture);
-            
+            m_FoamCommandBuffer.CopyTexture(m_FoamTexture, m_FoamPreTexture);
+            m_FoamMaterial.SetTexture("_Pre", m_FoamPreTexture);
         }
 
-        //m_FoamMaterial.SetTexture("_Pre", m_FoamTexture);
+        m_IsFoamRenderBegin = true;
 
         //m_IsFoamRenderBegin = true;
-        m_IsFoamRenderBegin = true;
 
         //if(pre)
         //    RenderTexture.ReleaseTemporary(pre);
@@ -175,18 +184,18 @@ public class FoamRenderCamera : MonoBehaviour
 
     //void OnRenderImage(RenderTexture src, RenderTexture dst)
     //{
-    //    if (!m_FoamPreTexture)
-    //    {
-    //        m_FoamPreTexture = new RenderTexture(1024, 1024, 24);
-    //    }
+    ////    if (!m_FoamPreTexture)
+    ////    {
+    ////        m_FoamPreTexture = new RenderTexture(1024, 1024, 24);
+    ////    }
     //    Graphics.Blit(m_FoamTexture, m_FoamPreTexture);
     //    m_FoamMaterial.SetTexture("_Pre", m_FoamPreTexture);
     //    Graphics.Blit(src, dst);
     //}
 
-	private void OnGUI()
-	{
-		if (m_FoamTexture)
-			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), m_FoamTexture);
-	}
+    //private void OnGUI()
+    //{
+    //    if (m_FoamTexture)
+    //        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), m_FoamTexture);
+    //}
 }

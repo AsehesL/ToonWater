@@ -5,6 +5,7 @@
 		_ReflRamp ("ReflRamp", 2D) = "white" {}
 		_WaterRamp ("WaterRamp", 2D) = "white" {}
 		_Foam ("Foam", 2D) = "white" {}
+		_InteractFoam ("InteractFoam", 2D) = "black" {}
 		_Speed ("Speed(X, Y)", vector) = (0, 0, 0, 0)
 		_FoamCutoff ("FoamCutoff", float) = 0
 	}
@@ -25,7 +26,7 @@
 
 			struct v2f
 			{
-				float2 uv_Foam : TEXCOORD0;
+				float2 uv : TEXCOORD0;
 				float3 worldPos : TEXCOORD1;
 				float3 worldNormal : TEXCOORD2;
 				float4 proj : TEXCOORD3;
@@ -36,6 +37,7 @@
 			sampler2D _ReflRamp;
 			sampler2D _WaterRamp;
 			sampler2D _Foam;
+			sampler2D _InteractFoam;
 			float4 _Foam_ST;
 			sampler2D _CameraDepthTexture;
 
@@ -46,7 +48,7 @@
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.uv_Foam = TRANSFORM_TEX(v.texcoord, _Foam);
+				o.uv = v.texcoord;
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				o.worldNormal = UnityObjectToWorldNormal(v.normal).xyz;
 				o.proj = ComputeScreenPos(o.vertex);
@@ -67,7 +69,11 @@
 				fixed4 wcol = tex2D(_WaterRamp, half2(depth, 0))*0.5 + refcol*0.5;
 
 				float depthParam = pow(1 - depth, 3);
-				fixed foam = (tex2D(_Foam, i.uv_Foam + half2(_Speed.x, _Speed.y)*_Time.y) + tex2D(_Foam, half2(i.uv_Foam.x + _Speed.x*_Time.y, 1 - i.uv_Foam.y + _Speed.y*_Time.y))).r*0.5*depthParam + depthParam*0.35;
+
+				half2 uvfoam = TRANSFORM_TEX(i.uv, _Foam);
+
+				fixed foam = (tex2D(_Foam, uvfoam + half2(_Speed.x, _Speed.y)*_Time.y) + tex2D(_Foam, half2(uvfoam.x + _Speed.x*_Time.y, 1 - uvfoam.y + _Speed.y*_Time.y))).r*0.5*depthParam + depthParam*0.35;
+				foam += tex2D(_InteractFoam, i.uv).r*0.5;
 				foam = saturate((foam - _FoamCutoff)*30);
 
 				wcol = wcol * (1 - foam) + foam;

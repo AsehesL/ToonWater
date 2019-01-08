@@ -34,6 +34,8 @@ public class FoamRenderer : MonoBehaviour
 	    }
 
         m_Camera.RenderFoam(m_MeshRenderer, flowspeed, offsetspeed);
+
+        m_MeshRenderer.sharedMaterial.SetTexture("_InteractFoam", m_Camera.foamTexture);
 	}
 
 	//private void OnRenderObject()

@@ -41,7 +41,7 @@
 			{
 				fixed4 col = tex2Dproj(_Interact, i.proj);
 				
-				fixed4 pre = (tex2D(_Pre, i.uv + half2(_Speed.x, _Speed.y) * _Time.x) + tex2D(_Pre, i.uv + half2(_Speed.x, -_Speed.y) * _Time.x))*0.5;
+				fixed4 pre = (tex2D(_Pre, i.uv + half2(_Speed.x, _Speed.y)) + tex2D(_Pre, i.uv + half2(_Speed.x, -_Speed.y)))*0.5;
 
 				col = col + pre * 0.9;
 

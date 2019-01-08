@@ -19144,6 +19144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foamInteracters:
   - {fileID: 1782941486}
+  flowspeed: -0.01
+  offsetspeed: 0.017
 --- !u!1 &1782941484
 GameObject:
   m_ObjectHideFlags: 0

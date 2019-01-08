@@ -46,6 +46,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: f6fd59af56639b542a920bdcb842b3ed, type: 3}
         m_Scale: {x: 9.59, y: 2.69}
         m_Offset: {x: 0, y: 0}
+    - _InteractFoam:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
