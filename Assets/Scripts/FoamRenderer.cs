@@ -6,6 +6,8 @@ public class FoamRenderer : MonoBehaviour
 {
 
 	public Renderer[] foamInteracters;
+    public float flowspeed;
+    public float offsetspeed;
 
     private bool m_IsInitialized;
     private Bounds m_Bounds;
@@ -13,6 +15,7 @@ public class FoamRenderer : MonoBehaviour
     private FoamRenderCamera m_Camera;
 
 	private MeshRenderer m_MeshRenderer;
+    private MeshFilter m_MeshFilter;
 
 	void Start ()
 	{
@@ -23,6 +26,14 @@ public class FoamRenderer : MonoBehaviour
 		if (!m_IsInitialized)
 			return;
 		m_Camera.RenderDepth(m_MeshRenderer);
+
+	    for (int i = 0; i < foamInteracters.Length; i++)
+	    {
+            if(foamInteracters[i] && m_Bounds.Intersects(foamInteracters[i].bounds))
+                m_Camera.RenderInteract(foamInteracters[i]);
+	    }
+
+        m_Camera.RenderFoam(m_MeshRenderer, flowspeed, offsetspeed);
 	}
 
 	//private void OnRenderObject()
@@ -34,8 +45,8 @@ public class FoamRenderer : MonoBehaviour
 
 	private bool Init()
     {
-        MeshFilter meshfilter = GetComponent<MeshFilter>();
-        if (!meshfilter || !meshfilter.sharedMesh)
+        m_MeshFilter = GetComponent<MeshFilter>();
+        if (!m_MeshFilter || !m_MeshFilter.sharedMesh)
             return false;
 	    m_MeshRenderer = GetComponent<MeshRenderer>();
         if (!m_MeshRenderer)
