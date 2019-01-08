@@ -10,24 +10,35 @@ public class FoamRenderer : MonoBehaviour
 
     private FoamRenderCamera m_Camera;
 
+	private MeshRenderer m_MeshRenderer;
+
 	void Start ()
 	{
 	    m_IsInitialized = Init();
 	}
 	
-	void Update () {
-		
+	void OnRenderObject() {
+		if (!m_IsInitialized)
+			return;
+		m_Camera.RenderDepth(m_MeshRenderer);
 	}
 
-    private bool Init()
+	//private void OnRenderObject()
+	//{
+	//	if (!m_IsInitialized)
+	//		return;
+	//	m_Camera.RenderDepth(m_MeshRenderer);
+	//}
+
+	private bool Init()
     {
         MeshFilter meshfilter = GetComponent<MeshFilter>();
         if (!meshfilter || !meshfilter.sharedMesh)
             return false;
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-        if (!meshRenderer)
+	    m_MeshRenderer = GetComponent<MeshRenderer>();
+        if (!m_MeshRenderer)
             return false;
-        m_Bounds = meshRenderer.bounds;
+        m_Bounds = m_MeshRenderer.bounds;
         Vector3 size = Vector3.Max( m_Bounds.size, Vector3.one);
         m_Bounds.size = size;
 
