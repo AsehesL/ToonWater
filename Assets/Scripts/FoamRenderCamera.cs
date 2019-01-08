@@ -21,7 +21,6 @@ public class FoamRenderCamera : MonoBehaviour
 		m_Camera = gameObject.GetComponent<Camera>();
 
 		m_DepthMaterial = new Material(Shader.Find("Hidden/Depth"));
-		m_DepthMaterial.SetFloat("_far", 1.0f / m_Camera.farClipPlane);
 
 		m_DepthTexture = new RenderTexture(1024, 1024, 24);
 	}

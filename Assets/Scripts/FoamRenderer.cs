@@ -5,6 +5,8 @@ using UnityEngine;
 public class FoamRenderer : MonoBehaviour
 {
 
+	public Renderer[] foamInteracters;
+
     private bool m_IsInitialized;
     private Bounds m_Bounds;
 

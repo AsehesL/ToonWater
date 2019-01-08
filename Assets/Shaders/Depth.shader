@@ -16,7 +16,6 @@
 
 			#include "UnityCG.cginc"
 
-			half _far;
 
 			struct v2f
 			{
@@ -28,7 +27,7 @@
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.depth = -UnityObjectToViewPos(v.vertex).z * _far;
+				o.depth = COMPUTE_DEPTH_01;
 				return o;
 			}
 
